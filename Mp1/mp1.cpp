@@ -20,6 +20,7 @@
 * 
 * Questions:
 * 1: Total charge = 50545.47
+* 2: Total charge = 50545.19
 */
 
 #include <iostream>
@@ -34,6 +35,7 @@ int main()
     float sum, input;
     int chargesNum = 10000;
     float charges[chargesNum];
+    bool swap;
 
     sum = 0;
     inputFile.open("charges.txt");
@@ -43,14 +45,20 @@ int main()
         charges[i] = input;
     }
 
-    for (int i = 0; i < chargesNum-1; i++)
+    do
     {
-        if (charges[i] < charges[i+1])
+        swap = false;
+        for (int i = 0; i < chargesNum-1; i++)
         {
-            swap(charges[i], charges[i+1]);
-            i = 0;
+            if (charges[i] < charges[i+1])
+            {
+                float temp = charges[i];
+                charges[i] = charges[i+1];
+                charges[i+1] = temp;
+                swap = true;
+            }
         }
-    }
+    }while(swap);
 
     for (int i = 0; i < chargesNum; i++)
     {
