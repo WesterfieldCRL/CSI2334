@@ -20,7 +20,15 @@
 * 
 * Questions:
 * 1: Total charge = 50545.47
-* 2: Total charge = 50545.19
+* 2: Total charge ascending = 50545.19
+* 3: Total charge descending = 50545.37
+* 4: Because of the way rounding works, numbers get truncated when they get to big.
+* Because of this, adding together numbers in different orders can lead to different
+* parts being truncated which results in slightly different answers. The most
+* accurate version of this program is to sort eveything in descending order first,
+* and then sum all of them. This is larger numbers add up quickly, and soon
+* the smaller numbers will not contribute to the sum. However, if you add the smaller
+* numbers first, they will add up and contribute more to the overall answer.
 */
 
 #include <iostream>
@@ -50,7 +58,7 @@ int main()
         swap = false;
         for (int i = 0; i < chargesNum-1; i++)
         {
-            if (charges[i] < charges[i+1])
+            if (charges[i] > charges[i+1])
             {
                 float temp = charges[i];
                 charges[i] = charges[i+1];
